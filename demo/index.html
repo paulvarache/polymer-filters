@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+            window.Polymer = {
+                dom: 'shadow'
+            };
+        </script>
+        <link rel="import" href="../bower_components/polymer/polymer.html">
+        <link rel="import" href="../polymer-filters.html">
+        <link rel="import" href="../filters/compare.html">
+        <link rel="import" href="../filters/capitalize.html">
+        <link rel="import" href="../filters/uppercase.html">
+        <link rel="import" href="../filters/lowercase.html">
+        <link rel="import" href="../filters/currency.html">
+        <style media="screen">
+            body, html {
+                font-family: sans-serif;
+                background-color: #f4f4f4;
+                width: 960px;
+                margin: 0 auto;
+            }
+            h1 {
+                text-align: center;
+            }
+            p {
+                font-style: italic;
+                color: rgba(0, 0, 0, 0.6);
+                padding: 6px;
+                border-left: 4px solid rgba(0, 0, 0, 0.3);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Welcome to the demo page
+        </h1>
+        <p>
+            You look beautiful, as always!
+        </p>
+        <filters-test></filters-test>
+        <dom-module id="filters-test">
+            <style>
+                :host {
+                    display: block;
+                }
+                h1 {
+                    font-weight: 100;
+                    color: #040404;
+                }
+                p {
+                    font-style: italic;
+                    color: rgba(0, 0, 0, 0.6);
+                    padding: 6px;
+                    border-left: 4px solid rgba(0, 0, 0, 0.3);
+                }
+                .result {
+                    margin-left: 12px;
+                    padding: 12px;
+                    background-color: white;
+                    border-radius: 6px;
+                }
+            </style>
+            <template>
+                <h1>Compare</h1>
+                <p>
+                    Contains a set of functions to do quick comparison between two values
+                </p>
+                <div class="result">
+                    <template is="dom-if" if="[[isEq('potato', 'potato')]]">
+                        <div>I am equal!</div>
+                    </template>
+                    <template is="dom-if" if="[[isNeq('potato', 'tomato')]]">
+                        <div>I am not equal!</div>
+                    </template>
+                    <template is="dom-if" if="[[isEqAbstract(0, '0')]]">
+                        <div>I am equal (In an abstract way 😉)!</div>
+                    </template>
+                    <template is="dom-if" if="[[isNeqAbstract(0, '1')]]">
+                        <div>I am not equal (Even in an abstract way 😉)!</div>
+                    </template>
+                    <template is="dom-if" if="[[isGt(5, 4)]]">
+                        <div>I am greater!</div>
+                    </template>
+                    <template is="dom-if" if="[[isGte(5, 5)]]">
+                        <div>I am not greater or equal!</div>
+                    </template>
+                    <template is="dom-if" if="[[isLt(3, 4)]]">
+                        <div>I am lesser!</div>
+                    </template>
+                    <template is="dom-if" if="[[isLte(3, 3)]]">
+                        <div>I am not lesser or equal!</div>
+                    </template>
+                </div>
+                <h1>
+                    Lower case
+                </h1>
+                <p>
+                    Well, what it does is...Lowercasify. I guess
+                </p>
+                <div class="result">
+                    <div>[[lowercase('I USED TO BE UPPER CASE 😭')]]</div>
+                </div>
+                <h1>
+                    Upper case
+                </h1>
+                <p>
+                    Same as before but in an more upper case mind set
+                </p>
+                <div class="result">
+                    <div>[[uppercase('I used to be lower case 😭')]]</div>
+                </div>
+                <h1>
+                    Capitalize
+                </h1>
+                <p>
+                    Uppercasify the first letter of the given string. Also works with words that are not world capitals
+                </p>
+                <div class="result">
+                    <div>[[capitalize('london')]] 🇬🇧</div>
+                    <div>[[capitalize('helsinki')]] 🇫🇮</div>
+                    <div>[[capitalize('abuja')]] 🇳🇬</div>
+                </div>
+                <h1>
+                    Currency
+                </h1>
+                <p>
+                    💰Money💰: Format a number to be displayed as a currency
+                </p>
+                <div class="result">
+                    <div>[[currency(9876)]]</div>
+                    <div>[[currency(9876, '£')]]</div>
+                    <div>[[currency(9876.543, '€', 3)]]</div>
+                </div>
+                <h1>
+                    Custom filter
+                </h1>
+                <p>
+                    So, yeah, you can define your own filters, go crazy!
+                </p>
+                <div class="result">
+                    <div>Is 🐴 a pony ? => <span hidden$="[[!isAPony('🐴')]]">✓</span></div>
+                    <div>Is 🐧 a pony ? => <span hidden$="[[!isAPony('🐧')]]">✓</span></div>
+                </div>
+            </template>
+            <script type="text/javascript">
+                var WHAT_A_PONY_SHOULD_BE = '🐴'
+                PolymerFilters.FilterBehavior.isAPony = function (maybePony) {
+                    return maybePony === '🐴';
+                }
+                Polymer({
+                    is: 'filters-test',
+                    behaviors: [PolymerFilters.FilterBehavior]
+                });
+            </script>
+        </dom-module>
+    </body>
+</html>

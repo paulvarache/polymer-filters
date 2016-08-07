@@ -1,0 +1,30 @@
+<link rel="import" href="../polymer-filters.html">
+<script type="text/javascript">
+    (function (PolymerFilters) {
+        /**
+        * Format a Number in Currency Format
+        * @param  {number} input
+        * @param  {string} currency - defaults to '$'
+        * @param  {integer} precision - defaults to 2
+        * @return {string}
+        */
+        PolymerFilters.FilterBehavior.currency = function (input, currency, precision) {
+            var parts, fnum, decimal;
+            if (isNaN(input)) {
+                return "Value is not a Number";
+            } else {
+                currency = currency || "$";
+                precision = precision || 2;
+
+                input = Number(input);
+                input = input.toFixed(precision);
+            }
+
+            parts = input.split('.'),
+            fnum = parts[0],
+            decimal = parts[1] ? '.' + parts[1] : '';
+
+            return currency + fnum.replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') + decimal;
+        };
+    })(window.PolymerFilters = window.PolymerFilters || {});
+</script>

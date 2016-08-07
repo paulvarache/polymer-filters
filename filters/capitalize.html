@@ -1,0 +1,9 @@
+<link rel="import" href="../polymer-filters.html">
+<script type="text/javascript">
+    (function (PolymerFilters) {
+        PolymerFilters.FilterBehavior.capitalize = function (string) {
+            string = string.toLowerCase();
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+    })(window.PolymerFilters = window.PolymerFilters || {});
+</script>

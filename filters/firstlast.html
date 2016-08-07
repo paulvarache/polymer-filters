@@ -1,0 +1,12 @@
+<link rel="import" href="../polymer-filters.html">
+<script type="text/javascript">
+    (function (PolymerFilters) {
+        PolymerFilters.FilterBehavior.first = function (arr) {
+            return arr[0];
+        };
+
+        PolymerFilters.FilterBehavior.last = function (arr) {
+            return arr[arr.length - 1];
+        };
+    })(window.PolymerFilters = window.PolymerFilters || {});
+</script>

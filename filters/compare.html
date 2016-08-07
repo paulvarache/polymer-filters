@@ -1,0 +1,42 @@
+<link rel="import" href="../polymer-filters.html">
+<script type="text/javascript">
+    (function (PolymerFilters) {
+
+        PolymerFilters.FilterBehavior.isEq = function (a, b) {
+            return a === b;
+        };
+
+        PolymerFilters.FilterBehavior.isNeq = function (a, b) {
+            return a !== b;
+        };
+
+        PolymerFilters.FilterBehavior.isEqAbstract = function (a, b) {
+            return a == b;
+        };
+
+        PolymerFilters.FilterBehavior.isNeqAbstract = function (a, b) {
+            return a != b;
+        };
+
+        PolymerFilters.FilterBehavior.isGt = function (a, b) {
+            return a > b;
+        };
+
+        PolymerFilters.FilterBehavior.isGt = function (a, b) {
+            return a > b;
+        };
+
+        PolymerFilters.FilterBehavior.isGte = function (a, b) {
+            return a >= b;
+        };
+
+        PolymerFilters.FilterBehavior.isLt = function (a, b) {
+            return a < b;
+        };
+
+        PolymerFilters.FilterBehavior.isLte = function (a, b) {
+            return a <= b;
+        };
+
+    })(window.PolymerFilters = window.PolymerFilters || {});
+</script>
